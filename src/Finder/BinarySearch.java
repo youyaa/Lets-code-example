@@ -44,17 +44,5 @@ public class BinarySearch {
         int i = binarySearch(sort, sort.length, 1000);
 
         System.out.println("二分查找返回的下标值："+i);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("开启一个线程执行咯。。。");
-            }
-        }).start();
-
-        new Thread(()->{
-            System.out.println("开启一个线程执行咯。。。");
-        }).start();
-
     }
 }
