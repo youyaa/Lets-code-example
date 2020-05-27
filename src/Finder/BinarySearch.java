@@ -7,20 +7,22 @@ package Finder;
  */
 public class BinarySearch {
 
+    //非递归实现
     public static int binarySearch(int[] a, int n, int value){
         if(n == 0 || 0>= a.length){
             return -1;
         }
-
-        System.out.println("本次需要查找的数组的长度为："+n);
-
         int low=0;
         int high=n-1;
         int i=1;
-
         for(;high>=low;){
+            /**
+             * //此处可能会发生溢出
+             * 可以改成low+(high-low)/2。
+             * 更进一步，如果要将性能优化到极致的话，
+             * 我们可以将这里的除以 2 操作转化成位运算 low+((high-low)>>1)。
+             */
             int middle = (low+high)/2;
-            System.out.println("第"+i+"次循环："+"本次判断的a["+middle+"]是"+a[middle]);
             if(a[middle]==value){
                 return middle;
             }
@@ -33,6 +35,19 @@ public class BinarySearch {
         }
         //不存在返回-1
         return -1;
+    }
+
+    // 二分查找的递归实现
+    private int bsearchInternally(int[] a, int low, int high, int value) {
+        if (low > high) return -1;
+        int mid = low + ((high - low) >> 1);
+        if (a[mid] == value) {
+            return mid;
+        } else if (a[mid] < value) {
+            return bsearchInternally(a, mid + 1, high, value);
+        } else {
+            return bsearchInternally(a, low, mid - 1, value);
+        }
     }
 
     public static void main(String[] args){

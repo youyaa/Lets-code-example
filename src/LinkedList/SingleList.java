@@ -1,6 +1,10 @@
 package LinkedList;
 
 
+import java.awt.*;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Author: listeningrain
  * Date: 2020/5/22 2:18 下午
@@ -10,6 +14,10 @@ public class SingleList {
     private int size; //链表的长度
     private Node head;
     private Node tail;
+
+    public Node getHead() {
+        return head;
+    }
 
     //插入,默认采用尾插法
     public boolean insert(String data){
@@ -64,7 +72,7 @@ public class SingleList {
         return true;
     }
     //获取某个值
-    public String get(int postion){
+    public Node get(int postion){
         if(postion<0 || postion>size-1){
             throw new IllegalArgumentException("参数有误");
         }
@@ -74,7 +82,7 @@ public class SingleList {
             result = result.next;
             i++;
         }
-        return result.data;
+        return result;
     }
     //遍历输出
     public void it(){
@@ -113,10 +121,60 @@ public class SingleList {
         size--;
         return true;
     }
+    //反转链表
+    public void reverse(){
+        if(head == null){
+            throw new RuntimeException("数组为空");
+        }
+        Node front = head;
+        Node behind = head.next;
+        //直接把第一个节点的next置为null
+        front.next = null;
+        while (behind != null){
+            Node newBehind = behind.next;
+            behind.next = front;
+            front = behind;
+            behind = newBehind;
+        }
+        //交换head和tail节点
+        Node cur = head;
+        head = tail;
+        tail = cur;
+    }
+    //求链表的中间节点
+    public Node getMiddle(){
+        Node quick = head;
+        Node slow = head;
+        //快慢指针，同时遍历，快指针一次走两格，慢指针一次走一格
+        while (true){
+            if(quick.next == null){
+                return slow;
+            }else if(quick.next.next == null){
+                //偶数个节点返回第二个节点
+                return slow.next;
+            }
+            slow = slow.next;
+            quick = quick.next.next;
+        }
+    }
+    //链表中环的检测
+    public boolean checkCircle(){
+        Set<Node> hashSet = new HashSet();
+        while (head != null){
+            if(hashSet.contains(head)){
+                return true;
+            }else{
+                hashSet.add(head);
+            }
+            head = head.next;
+        }
+        return false;
+    }
 
-    private static class Node{
-        private String data;
-        private Node next;  //下一个位置的指针
+
+    public static class Node{
+        public String data;
+        public Node next;  //下一个位置的指针
 
         public Node(String data) {
             this.data = data;
@@ -139,8 +197,19 @@ public class SingleList {
         singleList.insert("1",0);
         singleList.it();
         singleList.insert("12345");
+        singleList.insert("哈哈哈哈");
+        singleList.insert("344");
         singleList.it();
-        singleList.insert("0000",4);
+        System.out.println("----------求中间节点---------");
+        System.out.println(singleList.getMiddle().data);
+        singleList.get(1).next = singleList.head;
+        System.out.println("----------检测环---------");
+        System.out.println(singleList.checkCircle());
+        //反转
+        /*System.out.println("-----------");
+        singleList.reverse();
+        singleList.it();*/
+        /*singleList.insert("0000",4);
         singleList.it();
         singleList.insert("哈哈哈",3);
         singleList.it();
@@ -149,6 +218,6 @@ public class SingleList {
         singleList.remove(3);
         singleList.it();
         singleList.remove(singleList.size-1);
-        singleList.it();
+        singleList.it();*/
     }
 }
