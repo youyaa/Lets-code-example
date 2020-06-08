@@ -20,6 +20,7 @@ public class CircleSortedBinarySearch {
                     return i1;
                 }else{
                     low = high+1;
+                    high = low;
                 }
             }
         }
@@ -46,8 +47,9 @@ public class CircleSortedBinarySearch {
     }
 
     public static void main(String[] args){
-        int[] sort = {4,5,6,1,2,3,56,67,899};
-        int i = new CircleSortedBinarySearch().circleBinarySearch(sort, 1);
+        //int[] sort = {4,5,6,1,2,3,56,67,899};
+        int[] sort = {5,4};
+        int i = new CircleSortedBinarySearch().circleBinarySearch(sort, 4);
 
         System.out.println("二分查找出来的下标为："+i);
     }
