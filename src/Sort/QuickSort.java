@@ -7,20 +7,6 @@ package Sort;
  */
 public class QuickSort {
     /**
-     * 快速排序
-     * @param array
-     */
-   /* public static void quickSort(int[] array) {
-        int len;
-        if(array == null
-                || (len = array.length) == 0
-                || len == 1) {
-            return ;
-        }
-        sort(array, 0, len - 1);
-    }*/
-
-    /**
      * 快排核心算法，递归实现
      * @param array
      * @param left
@@ -63,9 +49,9 @@ public class QuickSort {
     }
 
     public static void main(String[] args){
-        int[] nums = {12,53,34,3,67,23,99,1};
+        int[] nums = {1332802,1177178,1514891,871248,753214,123866,1615405,328656,1540395,968891,1884022,252932,1034406,1455178,821713,486232,860175,1896237,852300,566715,1285209,1845742,883142,259266,520911,1844960,218188,1528217,332380,261485,1111670,16920,1249664,1199799,1959818,1546744,1904944,51047,1176397,190970,48715,349690,673887,1648782,1010556,1165786,937247,986578,798663};
         QuickSort.sort(nums,0,nums.length-1);
-        for (int i=0; i<nums.length-1; i++){
+        for (int i=0; i<nums.length; i++){
             System.out.print(nums[i]+",");
         }
     }

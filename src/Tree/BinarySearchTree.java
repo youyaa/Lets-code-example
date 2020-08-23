@@ -1,5 +1,8 @@
 package Tree;
 
+
+import java.util.LinkedList;
+
 /**
  * Author: listeningrain
  * Date: 2020/6/7 3:14 下午
@@ -112,7 +115,7 @@ public class BinarySearchTree {
         System.out.print(node.data+",");
         inOrder(node.right);
     }
-    //后续遍历
+    //后序遍历
     public void postOrder(Node node){
         if(node == null){
             return;
@@ -120,6 +123,32 @@ public class BinarySearchTree {
         postOrder(node.left);
         postOrder(node.right);
         System.out.print(node.data+",");
+    }
+    /**
+     * 二叉树的层序遍历 借助于队列来实现 借助队列的先进先出的特性
+     *
+     * 首先将根节点入队列 然后遍历队列。
+     * 首先将根节点打印出来，接着判断左节点是否为空 不为空则加入队列
+     * @param node
+     */
+    public void levelIterator(Node node){
+        LinkedList<Node> queue = new LinkedList<>() ;
+
+        //先将根节点入队
+        queue.offer(node) ;
+        Node current ;
+        while (!queue.isEmpty()){
+            current = queue.poll();
+
+            System.out.print(current.data+"--->");
+
+            if (current.left != null){
+                queue.offer(current.left) ;
+            }
+            if (current.right != null){
+                queue.offer(current.right) ;
+            }
+        }
     }
 
     public static class Node {

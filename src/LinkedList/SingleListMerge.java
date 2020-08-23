@@ -1,7 +1,5 @@
 package LinkedList;
 
-import sun.plugin2.util.SystemUtil;
-
 /**
  * Author: listeningrain
  * Date: 2020/5/26 8:08 下午

@@ -1,7 +1,6 @@
 package LinkedList;
 
 
-import java.awt.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,7 +27,8 @@ public class SingleList {
             //链表不存在则构建
             head = tail = new Node(null,null);
             Node node = new Node(data);
-            head = tail = node;
+            head.next = node;
+            tail = node;
         }else {
             //链表存在，插入尾部
             Node node = new Node(data);
@@ -186,25 +186,52 @@ public class SingleList {
         }
     }
 
+    //删除倒数第N个节点
+    public Node removeNthFromEnd(Node head, int n) {
+        Node param = head.next;
+        int nums = 0;       //节点总数
+        while(param != null){
+            nums++;
+            param = param.next;
+        }
+        param = head.next;
+        int used = 1;
+        if(nums == n){
+            return param.next;
+        }
+        while(param != null){
+            if(used == nums-n){
+                Node second = param.next;
+                param.next = second.next;
+                return head;
+            }
+            param = param.next;
+            used++;
+        }
+        return head;
+    }
+
     public static void main(String[] args) {
         SingleList singleList = new SingleList();
         singleList.insert("123");
         singleList.it();
-        singleList.insert("1234");
+        /*singleList.insert("1234");
         singleList.it();
         singleList.insert("12",0);
         singleList.it();
         singleList.insert("1",0);
         singleList.it();
         singleList.insert("12345");
-        singleList.insert("哈哈哈哈");
         singleList.insert("344");
+        singleList.it();*/
+        singleList.removeNthFromEnd(singleList.head,1);
         singleList.it();
-        System.out.println("----------求中间节点---------");
+
+        /*System.out.println("----------求中间节点---------");
         System.out.println(singleList.getMiddle().data);
         singleList.get(1).next = singleList.head;
         System.out.println("----------检测环---------");
-        System.out.println(singleList.checkCircle());
+        System.out.println(singleList.checkCircle());*/
         //反转
         /*System.out.println("-----------");
         singleList.reverse();

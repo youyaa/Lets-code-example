@@ -34,7 +34,7 @@ public class BubbleSort {
     }
 
     public static void main(String[] args){
-        Integer[] sort = {34,2,35,345,64,7};
+        Integer[] sort = {34,2,35,345,64,7,35};
         Boolean aBoolean = BubbleSort.bubbleSort(sort);
 
         System.out.println("排序的结果是"+aBoolean);
